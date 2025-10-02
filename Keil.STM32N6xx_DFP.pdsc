@@ -16,6 +16,9 @@
     <release version="1.0.2-dev">
       Active development ...
       Updated documentation references
+      Package Description:
+      - Reorganized memory regions
+      - Shortened device family description
     </release>
   </releases>
 
@@ -31,16 +34,7 @@
     <family Dfamily="STM32N6 Series" Dvendor="STMicroelectronics:13">
       <processor Dcore="Cortex-M55" DcoreVersion="r1p1" Dfpu="DP_FPU" Dmpu="MPU" Ddsp="DSP" Dmve="FP_MVE" Dtz="TZ" Dendian="Configurable" Dclock="800000000"/>
       <description>
-        The Cortex-M55 processor is a fully synthesizeable mid-range processor that is designed for the microcontroller market.
-        The processor offers high compute performance across both scalar and vector operations with low power consumption, fast interrupt handling, and optional enhanced system debug with extensive breakpoint and trace capabilities.
-        Other significant benefits to developers include:
-        - Efficient processor core, system, and memories
-        - Instruction set extension for Digital Signal Processing (DSP) and Machine Learning applications
-        - Ultra-low power consumption with integrated sleep modes
-        - Platform robustness with optional integrated memory protection
-        - Extended security features with optional Security Extension
-        - Extended vector processing functionality with optional Armv8.1-M M-profile Vector Extension (MVE). Armv8.1-M MVE is also referred to as Arm Helium technology.
-        - Support for Custom Datapath Extension (CDE), which adds classes of Arm Custom Instructions (ACIs) in the coprocessor instruction space.
+High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP-FPU, 3616 DMIPS at 800MHz.
       </description>
       <book name="https://developer.arm.com/documentation/101273/latest" title="Cortex-M55 Generic User Guide"/>
 
@@ -48,42 +42,69 @@
       <subFamily DsubFamily="STM32N657">
         <debug __ap="1" svd="CMSIS/SVD/STM32N657.svd"/>
         <compile define="STM32N657xx"/>
+        <book name="https://www.st.com/resource/en/reference_manual/rm0486-stm32n647657xx-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32N647/657xx Reference Manual"/>
+        <book name="https://www.st.com/resource/en/datasheet/stm32n657a0.pdf" title="STM32N6x5xx STM32N6x7xx Data Sheet"/>
 
-        <memory name="SRAM"       access="rwx" start="0x341C0000" size="0x40000"    default="1" />
-        <memory name="DTCMRAM"    access="rwx" start="0x30000000" size="0x00040000" default="1" />
-        <memory name="SRAM3456"   access="rwx" start="0x34200000" size="0x1C0000"   default="1" />
-        <memory name="SRAMAHB12"  access="rwx" start="0x38000000" size="0x00008000" default="1" />
-        <memory name="SRAM_GFXMM" access="rwx" start="0x35000000" size="0x01000000" default="1" />
+        <!-- BootROM copies the FSBL binary into the internal AXISRAM2 -->
+        <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" default="1" init="0" startup="1" />
+        <memory name="FSBL_CODE_S"    access="rwx" start="0x34180400" size="0x0003FC00" alias="FSBL_CODE_NS" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x241C0000" size="0x00040000" default="1" init="0" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x341C0000" size="0x00040000" alias="FSBL_DATA_NS" />
+
+        <memory name="FLEXRAM_NS"     access="rwx" start="0x24000000" size="0x00064000" default="0" init="0" />
+        <memory name="FLEXRAM_S"      access="rwx" start="0x34000000" size="0x00064000" alias="FLEXRAM_NS" />
+        <memory name="AXISRAM1_NS"    access="rwx" start="0x24064000" size="0x0009C000" default="1" init="0" />
+        <memory name="AXISRAM1_S"     access="rwx" start="0x34064000" size="0x0009C000" alias="AXISRAM1_NS" />
+<!--    <memory name="AXISRAM2_NS"    access="rwx" start="0x24100000" size="0x00100000" default="1" init="0" /> -->
+<!--    <memory name="AXISRAM2_S"     access="rwx" start="0x34100000" size="0x00100000" alias="AXISRAM2_NS" /> -->
+        <memory name="AXISRAM3_NS"    access="rwx" start="0x24200000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM3_S"     access="rwx" start="0x34200000" size="0x00070000" alias="AXISRAM3_NS" />
+        <memory name="AXISRAM4_NS"    access="rwx" start="0x24270000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM4_S"     access="rwx" start="0x34270000" size="0x00070000" alias="AXISRAM4_NS" />
+        <memory name="AXISRAM5_NS"    access="rwx" start="0x242E0000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM5_S"     access="rwx" start="0x342E0000" size="0x00070000" alias="AXISRAM5_NS" />
+        <memory name="AXISRAM6_NS"    access="rwx" start="0x24350000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM6_S"     access="rwx" start="0x34350000" size="0x00070000" alias="AXISRAM6_NS" />
+        <memory name="CACHEAXI_NS"    access="rwx" start="0x243C0000" size="0x00040000" default="1" init="0" />
+        <memory name="CACHEAXI_S"     access="rwx" start="0x343C0000" size="0x00040000" alias="CACHEAXI_NS" />
+        <memory name="VENCRAM_NS"     access="rwx" start="0x24400000" size="0x00020000" default="1" init="0" />
+        <memory name="VENCRAM_S"      access="rwx" start="0x34400000" size="0x00020000" alias="VENCRAM_NS" />
+        <memory name="GFXMMU_SLV_NS"  access="rwx" start="0x25000000" size="0x01000000" default="1" init="0" />
+        <memory name="GFXMMU_SLV_S"   access="rwx" start="0x35000000" size="0x01000000" alias="GFXMMU_SLV_NS" />
+        <memory name="AHBSRAM1_NS"    access="rwx" start="0x28000000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM1_S"     access="rwx" start="0x38000000" size="0x00004000" alias="AHBSRAM1_NS" />
+        <memory name="AHBSRAM2_NS"    access="rwx" start="0x28004000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM2_S"     access="rwx" start="0x38004000" size="0x00004000" alias="AHBSRAM2_NS" />
+        <memory name="Backup_SRAM_NS" access="rwx" start="0x2C000000" size="0x00002000" default="1" init="0" />
+        <memory name="Backup_SRAM_S"  access="rwx" start="0x3C000000" size="0x00002000" alias="Backup_SRAM_NS" />
+        <memory name="ITCM_NS"        access="rwx" start="0x00000000" size="0x00040000" default="1" init="0" />
+        <memory name="ITCM_S"         access="rwx" start="0x10000000" size="0x00040000" alias="ITCM_NS" />
+        <memory name="DTCM_NS"        access="rwx" start="0x20000000" size="0x00040000" default="1" init="0" />
+        <memory name="DTCM_S"         access="rwx" start="0x30000000" size="0x00040000" alias="ITCM_NS" />
 
         <!-- ################################### 0MB ############################################ -->
         <!-- *************************  Device 'STM32N657X0HxQ'   ***************************** -->
         <device Dname="STM32N657X0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" /> 
           <feature type="BGA" n="264"/>
         </device>
         <!-- *************************  Device 'STM32N657L0HxQ'   ***************************** -->
         <device Dname="STM32N657L0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="223"/>
         </device>
         <!-- *************************  Device 'STM32N657B0HxQ'   ***************************** -->
         <device Dname="STM32N657B0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="198"/>
         </device>
         <!-- *************************  Device 'STM32N657I0HxQ'   ***************************** -->
         <device Dname="STM32N657I0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="178"/>
         </device>
         <!-- *************************  Device 'STM32N657Z0HxQ'   ***************************** -->
         <device Dname="STM32N657Z0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="142"/>
         </device>
         <!-- *************************  Device 'STM32N657A0HxQ'   ***************************** -->
         <device Dname="STM32N657A0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="169"/>
         </device>
       </subFamily>
@@ -92,42 +113,69 @@
       <subFamily DsubFamily="STM32N647">
         <debug __ap="1" svd="CMSIS/SVD/STM32N647.svd"/>
         <compile define="STM32N647xx"/>
+        <book name="https://www.st.com/resource/en/reference_manual/rm0486-stm32n647657xx-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32N647/657xx Reference Manual"/>
+        <book name="https://www.st.com/resource/en/datasheet/stm32n657a0.pdf" title="STM32N6x5xx STM32N6x7xx Data Sheet"/>
 
-        <memory name="ITCMRAM"    access="rwx" start="0x00000000" size="0x00040000" default="1" />
-        <memory name="DTCMRAM"    access="rwx" start="0x20000000" size="0x00040000" default="1" />
-        <memory name="SRAM1234"   access="rwx" start="0x24000000" size="0x3E0000"   default="1" />
-        <memory name="SRAM_GFXMM" access="rwx" start="0x25000000" size="0x01000000" default="0" />
-        <memory name="SRAMAHB12"  access="rwx" start="0x28000000" size="0x00008000" default="1" />
+        <!-- BootROM copies the FSBL binary into the internal AXISRAM2 -->
+        <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" default="1" init="0" startup="1" />
+        <memory name="FSBL_CODE_S"    access="rwx" start="0x34180400" size="0x0003FC00" alias="FSBL_CODE_NS" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x241C0000" size="0x00040000" default="1" init="0" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x341C0000" size="0x00040000" alias="FSBL_DATA_NS" />
+
+        <memory name="FLEXRAM_NS"     access="rwx" start="0x24000000" size="0x00064000" default="0" init="0" />
+        <memory name="FLEXRAM_S"      access="rwx" start="0x34000000" size="0x00064000" alias="FLEXRAM_NS" />
+        <memory name="AXISRAM1_NS"    access="rwx" start="0x24064000" size="0x0009C000" default="1" init="0" />
+        <memory name="AXISRAM1_S"     access="rwx" start="0x34064000" size="0x0009C000" alias="AXISRAM1_NS" />
+<!--    <memory name="AXISRAM2_NS"    access="rwx" start="0x24100000" size="0x00100000" default="1" init="0" /> -->
+<!--    <memory name="AXISRAM2_S"     access="rwx" start="0x34100000" size="0x00100000" alias="AXISRAM2_NS" /> -->
+        <memory name="AXISRAM3_NS"    access="rwx" start="0x24200000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM3_S"     access="rwx" start="0x34200000" size="0x00070000" alias="AXISRAM3_NS" />
+        <memory name="AXISRAM4_NS"    access="rwx" start="0x24270000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM4_S"     access="rwx" start="0x34270000" size="0x00070000" alias="AXISRAM4_NS" />
+        <memory name="AXISRAM5_NS"    access="rwx" start="0x242E0000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM5_S"     access="rwx" start="0x342E0000" size="0x00070000" alias="AXISRAM5_NS" />
+        <memory name="AXISRAM6_NS"    access="rwx" start="0x24350000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM6_S"     access="rwx" start="0x34350000" size="0x00070000" alias="AXISRAM6_NS" />
+        <memory name="CACHEAXI_NS"    access="rwx" start="0x243C0000" size="0x00040000" default="1" init="0" />
+        <memory name="CACHEAXI_S"     access="rwx" start="0x343C0000" size="0x00040000" alias="CACHEAXI_NS" />
+        <memory name="VENCRAM_NS"     access="rwx" start="0x24400000" size="0x00020000" default="1" init="0" />
+        <memory name="VENCRAM_S"      access="rwx" start="0x34400000" size="0x00020000" alias="VENCRAM_NS" />
+        <memory name="GFXMMU_SLV_NS"  access="rwx" start="0x25000000" size="0x01000000" default="1" init="0" />
+        <memory name="GFXMMU_SLV_S"   access="rwx" start="0x35000000" size="0x01000000" alias="GFXMMU_SLV_NS" />
+        <memory name="AHBSRAM1_NS"    access="rwx" start="0x28000000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM1_S"     access="rwx" start="0x38000000" size="0x00004000" alias="AHBSRAM1_NS" />
+        <memory name="AHBSRAM2_NS"    access="rwx" start="0x28004000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM2_S"     access="rwx" start="0x38004000" size="0x00004000" alias="AHBSRAM2_NS" />
+        <memory name="Backup_SRAM_NS" access="rwx" start="0x2C000000" size="0x00002000" default="1" init="0" />
+        <memory name="Backup_SRAM_S"  access="rwx" start="0x3C000000" size="0x00002000" alias="Backup_SRAM_NS" />
+        <memory name="ITCM_NS"        access="rwx" start="0x00000000" size="0x00040000" default="1" init="0" />
+        <memory name="ITCM_S"         access="rwx" start="0x10000000" size="0x00040000" alias="ITCM_NS" />
+        <memory name="DTCM_NS"        access="rwx" start="0x20000000" size="0x00040000" default="1" init="0" />
+        <memory name="DTCM_S"         access="rwx" start="0x30000000" size="0x00040000" alias="ITCM_NS" />
 
         <!-- ################################### 0MB ############################################ -->
         <!-- *************************  Device 'STM32N647X0HxQ'   ***************************** -->
         <device Dname="STM32N647X0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="264"/>
         </device>
         <!-- *************************  Device 'STM32N647L0HxQ'   ***************************** -->
         <device Dname="STM32N647L0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="223"/>
         </device>
         <!-- *************************  Device 'STM32N647B0HxQ'   ***************************** -->
         <device Dname="STM32N647B0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="198"/>
         </device>
         <!-- *************************  Device 'STM32N647I0HxQ'   ***************************** -->
         <device Dname="STM32N647I0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="178"/>
         </device>
         <!-- *************************  Device 'STM32N647Z0HxQ'   ***************************** -->
         <device Dname="STM32N647Z0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="142"/>
         </device>
         <!-- *************************  Device 'STM32N647A0HxQ'   ***************************** -->
         <device Dname="STM32N647A0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="169"/>
         </device>
       </subFamily>
@@ -136,42 +184,67 @@
       <subFamily DsubFamily="STM32N645">
         <debug __ap="1" svd="CMSIS/SVD/STM32N645.svd"/>
         <compile define="STM32N645xx"/>
+        <book name="https://www.st.com/resource/en/reference_manual/rm0486-stm32n647657xx-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32N647/657xx Reference Manual"/>
+        <book name="https://www.st.com/resource/en/datasheet/stm32n657a0.pdf" title="STM32N6x5xx STM32N6x7xx Data Sheet"/>
 
-        <memory name="ITCMRAM"    access="rwx" start="0x00000000" size="0x00040000" default="1" />
-        <memory name="DTCMRAM"    access="rwx" start="0x20000000" size="0x00040000" default="1" />
-        <memory name="SRAM1234"   access="rwx" start="0x24000000" size="0x3E0000"   default="1" />
-        <memory name="SRAM_GFXMM" access="rwx" start="0x25000000" size="0x01000000" default="0" />
-        <memory name="SRAMAHB12"  access="rwx" start="0x28000000" size="0x00008000" default="1" />
+        <!-- BootROM copies the FSBL binary into the internal AXISRAM2 -->
+        <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" default="1" init="0" startup="1" />
+        <memory name="FSBL_CODE_S"    access="rwx" start="0x34180400" size="0x0003FC00" alias="FSBL_CODE_NS" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x241C0000" size="0x00040000" default="1" init="0" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x341C0000" size="0x00040000" alias="FSBL_DATA_NS" />
+
+        <memory name="FLEXRAM_NS"     access="rwx" start="0x24000000" size="0x00064000" default="0" init="0" />
+        <memory name="FLEXRAM_S"      access="rwx" start="0x34000000" size="0x00064000" alias="FLEXRAM_NS" />
+        <memory name="AXISRAM1_NS"    access="rwx" start="0x24064000" size="0x0009C000" default="1" init="0" />
+        <memory name="AXISRAM1_S"     access="rwx" start="0x34064000" size="0x0009C000" alias="AXISRAM1_NS" />
+<!--    <memory name="AXISRAM2_NS"    access="rwx" start="0x24100000" size="0x00100000" default="1" init="0" /> -->
+<!--    <memory name="AXISRAM2_S"     access="rwx" start="0x34100000" size="0x00100000" alias="AXISRAM2_NS" /> -->
+        <memory name="AXISRAM3_NS"    access="rwx" start="0x24200000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM3_S"     access="rwx" start="0x34200000" size="0x00070000" alias="AXISRAM3_NS" />
+        <memory name="AXISRAM4_NS"    access="rwx" start="0x24270000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM4_S"     access="rwx" start="0x34270000" size="0x00070000" alias="AXISRAM4_NS" />
+        <memory name="AXISRAM5_NS"    access="rwx" start="0x242E0000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM5_S"     access="rwx" start="0x342E0000" size="0x00070000" alias="AXISRAM5_NS" />
+        <memory name="AXISRAM6_NS"    access="rwx" start="0x24350000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM6_S"     access="rwx" start="0x34350000" size="0x00070000" alias="AXISRAM6_NS" />
+        <memory name="VENCRAM_NS"     access="rwx" start="0x24400000" size="0x00020000" default="1" init="0" />
+        <memory name="VENCRAM_S"      access="rwx" start="0x34400000" size="0x00020000" alias="VENCRAM_NS" />
+        <memory name="GFXMMU_SLV_NS"  access="rwx" start="0x25000000" size="0x01000000" default="1" init="0" />
+        <memory name="GFXMMU_SLV_S"   access="rwx" start="0x35000000" size="0x01000000" alias="GFXMMU_SLV_NS" />
+        <memory name="AHBSRAM1_NS"    access="rwx" start="0x28000000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM1_S"     access="rwx" start="0x38000000" size="0x00004000" alias="AHBSRAM1_NS" />
+        <memory name="AHBSRAM2_NS"    access="rwx" start="0x28004000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM2_S"     access="rwx" start="0x38004000" size="0x00004000" alias="AHBSRAM2_NS" />
+        <memory name="Backup_SRAM_NS" access="rwx" start="0x2C000000" size="0x00002000" default="1" init="0" />
+        <memory name="Backup_SRAM_S"  access="rwx" start="0x3C000000" size="0x00002000" alias="Backup_SRAM_NS" />
+        <memory name="ITCM_NS"        access="rwx" start="0x00000000" size="0x00040000" default="1" init="0" />
+        <memory name="ITCM_S"         access="rwx" start="0x10000000" size="0x00040000" alias="ITCM_NS" />
+        <memory name="DTCM_NS"        access="rwx" start="0x20000000" size="0x00040000" default="1" init="0" />
+        <memory name="DTCM_S"         access="rwx" start="0x30000000" size="0x00040000" alias="ITCM_NS" />
 
         <!-- ################################### 0MB ############################################ -->
         <!-- *************************  Device 'STM32N645X0HxQ'   ***************************** -->
         <device Dname="STM32N645X0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="264"/>
         </device>
         <!-- *************************  Device 'STM32N645L0HxQ'   ***************************** -->
         <device Dname="STM32N645L0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="223"/>
         </device>
         <!-- *************************  Device 'STM32N645B0HxQ'   ***************************** -->
         <device Dname="STM32N645B0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="198"/>
         </device>
         <!-- *************************  Device 'STM32N645I0HxQ'   ***************************** -->
         <device Dname="STM32N645I0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="178"/>
         </device>
         <!-- *************************  Device 'STM32N645Z0HxQ'   ***************************** -->
         <device Dname="STM32N645Z0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="142"/>
         </device>
         <!-- *************************  Device 'STM32N645A0HxQ'   ***************************** -->
         <device Dname="STM32N645A0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="169"/>
         </device>
       </subFamily>
@@ -180,42 +253,68 @@
       <subFamily DsubFamily="STM32N655">
         <debug __ap="1" svd="CMSIS/SVD/STM32N655.svd"/>
         <compile define="STM32N655xx"/>
+        <book name="https://www.st.com/resource/en/reference_manual/rm0486-stm32n647657xx-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32N647/657xx Reference Manual"/>
+        <book name="https://www.st.com/resource/en/datasheet/stm32n657a0.pdf" title="STM32N6x5xx STM32N6x7xx Data Sheet"/>
 
-        <memory name="ITCMRAM"    access="rwx" start="0x00000000" size="0x00040000" default="1" />
-        <memory name="DTCMRAM"    access="rwx" start="0x20000000" size="0x00040000" default="1" />
-        <memory name="SRAM1234"   access="rwx" start="0x24000000" size="0x3E0000"   default="1" />
-        <memory name="SRAM_GFXMM" access="rwx" start="0x25000000" size="0x01000000" default="0" />
-        <memory name="SRAMAHB12"  access="rwx" start="0x28000000" size="0x00008000" default="1" />
+        <!-- BootROM copies the FSBL binary into the internal AXISRAM2 -->
+        <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" default="1" init="0" startup="1" />
+        <memory name="FSBL_CODE_S"    access="rwx" start="0x34180400" size="0x0003FC00" alias="FSBL_CODE_NS" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x241C0000" size="0x00040000" default="1" init="0" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x341C0000" size="0x00040000" alias="FSBL_DATA_NS" />
+
+        <memory name="FLEXRAM_NS"     access="rwx" start="0x24000000" size="0x00064000" default="0" init="0" />
+        <memory name="FLEXRAM_S"      access="rwx" start="0x34000000" size="0x00064000" alias="FLEXRAM_NS" />
+        <memory name="AXISRAM1_NS"    access="rwx" start="0x24064000" size="0x0009C000" default="1" init="0" />
+        <memory name="AXISRAM1_S"     access="rwx" start="0x34064000" size="0x0009C000" alias="AXISRAM1_NS" />
+<!--    <memory name="AXISRAM2_NS"    access="rwx" start="0x24100000" size="0x00100000" default="1" init="0" /> -->
+<!--    <memory name="AXISRAM2_S"     access="rwx" start="0x34100000" size="0x00100000" alias="AXISRAM2_NS" /> -->
+        <memory name="AXISRAM3_NS"    access="rwx" start="0x24200000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM3_S"     access="rwx" start="0x34200000" size="0x00070000" alias="AXISRAM3_NS" />
+        <memory name="AXISRAM4_NS"    access="rwx" start="0x24270000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM4_S"     access="rwx" start="0x34270000" size="0x00070000" alias="AXISRAM4_NS" />
+        <memory name="AXISRAM5_NS"    access="rwx" start="0x242E0000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM5_S"     access="rwx" start="0x342E0000" size="0x00070000" alias="AXISRAM5_NS" />
+        <memory name="AXISRAM6_NS"    access="rwx" start="0x24350000" size="0x00070000" default="0" init="0" />
+        <memory name="AXISRAM6_S"     access="rwx" start="0x34350000" size="0x00070000" alias="AXISRAM6_NS" />
+        <memory name="VENCRAM_NS"     access="rwx" start="0x24400000" size="0x00020000" default="1" init="0" />
+        <memory name="VENCRAM_S"      access="rwx" start="0x34400000" size="0x00020000" alias="VENCRAM_NS" />
+        <memory name="GFXMMU_SLV_NS"  access="rwx" start="0x25000000" size="0x01000000" default="1" init="0" />
+        <memory name="GFXMMU_SLV_S"   access="rwx" start="0x35000000" size="0x01000000" alias="GFXMMU_SLV_NS" />
+        <memory name="AHBSRAM1_NS"    access="rwx" start="0x28000000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM1_S"     access="rwx" start="0x38000000" size="0x00004000" alias="AHBSRAM1_NS" />
+        <memory name="AHBSRAM2_NS"    access="rwx" start="0x28004000" size="0x00004000" default="1" init="0" />
+        <memory name="AHBSRAM2_S"     access="rwx" start="0x38004000" size="0x00004000" alias="AHBSRAM2_NS" />
+        <memory name="Backup_SRAM_NS" access="rwx" start="0x2C000000" size="0x00002000" default="1" init="0" />
+        <memory name="Backup_SRAM_S"  access="rwx" start="0x3C000000" size="0x00002000" alias="Backup_SRAM_NS" />
+        <memory name="ITCM_NS"        access="rwx" start="0x00000000" size="0x00040000" default="1" init="0" />
+        <memory name="ITCM_S"         access="rwx" start="0x10000000" size="0x00040000" alias="ITCM_NS" />
+        <memory name="DTCM_NS"        access="rwx" start="0x20000000" size="0x00040000" default="1" init="0" />
+        <memory name="DTCM_S"         access="rwx" start="0x30000000" size="0x00040000" alias="ITCM_NS" />
 
         <!-- ################################### 0MB ############################################ -->
         <!-- *************************  Device 'STM32N655X0HxQ'   ***************************** -->
         <device Dname="STM32N655X0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
+
           <feature type="BGA" n="264"/>
         </device>
         <!-- *************************  Device 'STM32N655L0HxQ'   ***************************** -->
         <device Dname="STM32N655L0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="223"/>
         </device>
         <!-- *************************  Device 'STM32N655B0HxQ'   ***************************** -->
         <device Dname="STM32N655B0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="198"/>
         </device>
         <!-- *************************  Device 'STM32N655I0HxQ'   ***************************** -->
         <device Dname="STM32N655I0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="178"/>
         </device>
         <!-- *************************  Device 'STM32N655Z0HxQ'   ***************************** -->
         <device Dname="STM32N655Z0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="142"/>
         </device>
         <!-- *************************  Device 'STM32N655A0HxQ'   ***************************** -->
         <device Dname="STM32N655A0HxQ">
-          <memory name="Flash" access="rx" start="0x34180400" size="0x003FC00" default="1" startup="1" />
           <feature type="BGA" n="169"/>
         </device>
       </subFamily>
@@ -261,7 +360,7 @@
     </template>
 
     <!-- CubeMX TrustZone CMSIS Solution template -->
-    <template name="CubeMX TrustZone solution" path="Templates/CubeMX_TZ" file="CubeMX_TZ.csolution.yml" condition="STM32N6">
+    <template name="CubeMX TrustZone solution" path="Templates/CubeMX_TZ" file="CubeMX.csolution.yml" condition="STM32N6">
       <description>Create a CubeMX TrustZone solution with secure and non-secure projects</description>
     </template>
 
