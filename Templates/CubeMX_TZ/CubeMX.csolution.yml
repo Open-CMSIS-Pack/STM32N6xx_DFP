@@ -23,7 +23,7 @@ solution:
   build-types:
     - type: Debug
       debug: on
-      optimize: none
+      optimize: debug
 
     - type: Release
       debug: off
