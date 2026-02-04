@@ -13,12 +13,8 @@
   </licenseSets>
 
   <releases>
-    <release version="1.0.2-dev">
+    <release version="1.1.1-dev">
       Active development ...
-      Updated documentation references
-      Package Description:
-      - Reorganized memory regions
-      - Shortened device family description
     </release>
   </releases>
 
