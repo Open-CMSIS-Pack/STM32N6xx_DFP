@@ -46,10 +46,10 @@ High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP
         <book name="https://www.st.com/resource/en/datasheet/stm32n657a0.pdf" title="STM32N6x5xx STM32N6x7xx Data Sheet"/>
 
         <!-- BootROM copies the FSBL binary into the internal AXISRAM2 -->
-        <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" default="1" init="0" startup="1" />
-        <memory name="FSBL_CODE_S"    access="rwx" start="0x34180400" size="0x0003FC00" alias="FSBL_CODE_NS" />
-        <memory name="FSBL_DATA_NS"   access="rwx" start="0x241C0000" size="0x00040000" default="1" init="0" />
-        <memory name="FSBL_DATA_NS"   access="rwx" start="0x341C0000" size="0x00040000" alias="FSBL_DATA_NS" />
+        <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" alias="FSBL_CODE_S" />
+        <memory name="FSBL_CODE_S"    access="rwx" start="0x34180400" size="0x0003FC00" default="1" init="0" startup="1" />
+        <memory name="FSBL_DATA_NS"   access="rwx" start="0x241C0000" size="0x00040000" alias="FSBL_DATA_S" />
+        <memory name="FSBL_DATA_S"    access="rwx" start="0x341C0000" size="0x00040000" default="1" init="0" />
 
         <memory name="FLEXRAM_NS"     access="rwx" start="0x24000000" size="0x00064000" default="0" init="0" />
         <memory name="FLEXRAM_S"      access="rwx" start="0x34000000" size="0x00064000" alias="FLEXRAM_NS" />
