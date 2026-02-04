@@ -1,0 +1,57 @@
+# A solution is a collection of related projects that share same base configuration.
+solution:
+  created-for: CMSIS-Toolbox@2.12.0
+  cdefault:
+
+  # List of tested compilers that can be selected
+  select-compiler:
+    - compiler: AC6
+
+  # List the packs that define the device and/or board.
+  packs:
+    - pack: Keil::STM32N6xx_DFP
+    - pack: ARM::CMSIS
+    - pack: Keil::STM32N6570-DK_BSP
+
+  # List different hardware targets that are used to deploy the solution.
+  target-types:
+    - type: STM32N657X0HxQ
+      target-set:
+        - set: ExtMemLoader
+          images:
+            - project-context: ExtMemLoader.Debug
+        - set: FSBL
+          images:
+            - project-context: FSBL.Debug
+              load: symbols
+            - image: out/FSBL/$Dname$/Debug/FSBL-trusted.bin
+              load-offset: 0x70000000
+              load: image
+          debugger:
+            name: ST-Link@pyOCD
+            port: 3333
+            protocol: swd
+            clock: 4000000
+      device: STM32N657X0HxQ
+      board: STM32N6570-DK:Rev.C
+      memory:
+        - name: Ext-Flash
+          access: rx
+          start: 0x70000000
+          size: 0x100000
+          algorithm: ExtMemLoader.axf
+
+  # List of different build configurations.
+  build-types:
+    - type: Debug
+      debug: on
+      optimize: debug
+
+    - type: Release
+      debug: off
+      optimize: balanced
+
+  # List related projects.
+  projects:
+    - project: FSBL/FSBL.cproject.yml
+    - project: ExtMemLoader/ExtMemLoader.cproject.yml

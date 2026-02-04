@@ -2,8 +2,8 @@
 project:
 
   processor:
-    # This project is executed in non-secure mode.
-    trustzone: non-secure
+    # This project is executed in secure mode.
+    trustzone: secure
 
   # List components to use for your application.
   # A software component is a re-usable unit that may be configurable.
@@ -14,4 +14,12 @@ project:
   generators:
     options:
     - generator: CubeMX
-      map: AppliNonSecure
+      map: Appli
+
+  # List executable file formats to be generated.
+  output:
+    type:
+      - bin
+      - elf
+      - hex
+      - map

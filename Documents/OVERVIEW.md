@@ -5,8 +5,18 @@ The **STMicroelectronics STM32N6 Series Device Family Pack (DFP)** is a [CMSIS-P
 - Enables compatible tools with device support.
 - Supports Arm Compiler 6 (AC6), GCC, and IAR.
 - Contains [System View Description (SVD)](https://open-cmsis-pack.github.io/svd-spec/main/index.html) descriptions of the peripherals.
-- Flash algorithms for the on-chip Flash memory.
 - Debug configuration information.
+
+## Template Projects
+
+This DFP contains [Templates]( https://mdk-packs.github.io/vscode-cmsis-solution-docs/create_app.html#) stub projects that can be used with the [CMSIS-Toolbox](https://open-cmsis-pack.github.io/cmsis-toolbox/) or [Keil Studio]( https://www.keil.arm.com/).
+ 
+Template   | Description
+:----------|:---------------------------------
+FSBL       | First Stage Bootloader template solution (CubeMX configurable)
+FSBL_LRUN  | First Stage Bootloader load and run (LRUN) template solution (CubeMX configurable)
+FSBL_XIP   | First Stage Bootloader execute in place (XIP) template solution (CubeMX configurable)
+
 
 ## CMSIS-Driver Support
 

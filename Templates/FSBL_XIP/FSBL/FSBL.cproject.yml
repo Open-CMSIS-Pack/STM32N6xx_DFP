@@ -14,4 +14,12 @@ project:
   generators:
     options:
     - generator: CubeMX
-      map: AppliSecure
+      map: FSBL
+
+  # List executable file formats to be generated.
+  output:
+    type:
+      - bin
+      - elf
+      - hex
+      - map

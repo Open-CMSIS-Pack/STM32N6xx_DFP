@@ -1,0 +1,40 @@
+# A project translates into one executable or library.
+project:
+
+  processor:
+    # This project is executed in secure mode.
+    trustzone: secure
+
+  # List of preprocessor macros to be defined.
+  define:
+    - STM32_EXTMEMLOADER_MDKARMTARGET
+    - __ARM_FEATURE_CMSE: 3
+
+  # List of miscellaneous settings.
+  setups:
+    - setup: Template project setup
+      for-compiler: AC6
+      misc:
+        - C-CPP:
+          - -fropi
+          - -frwpi
+        - Link:
+          - --entry=main
+
+  # List components to use for your application.
+  # A software component is a re-usable unit that may be configurable.
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: Device:CubeMX
+
+  generators:
+    options:
+    - generator: CubeMX
+      map: ExtMemLoader
+
+  # List executable file formats to be generated.
+  output:
+    type:
+      - elf
+      - hex
+      - map

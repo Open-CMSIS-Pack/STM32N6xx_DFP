@@ -15,3 +15,11 @@ project:
     options:
     - generator: CubeMX
       map: Appli
+
+  # List executable file formats to be generated.
+  output:
+    type:
+      - bin
+      - elf
+      - hex
+      - map
