@@ -13,6 +13,7 @@ Directory                   | Description
 :---------------------------|:--------------
 [.github/workflows](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/tree/main/.github/workflows)  | [GitHub Actions](#github-actions) for creating the software pack.
 [CMSIS/SVD](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/tree/main/CMSIS/SVD)                  | Contains SVD files for the devices.
+[Documents](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/tree/main/Documents)                  | [Usage overview](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/tree/main/Documents/OVERVIEW.md) of the STM32N6xx DFP, covering Template Projects, CMSIS-Driver and CubeMX support, and VS Code usage.
 [Templates](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/tree/main/Templates)                  | Device specific project templates to start new *csolution projects*.
 
 ## Usage
