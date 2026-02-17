@@ -9,7 +9,7 @@ solution:
 
   # List the packs that define the device and/or board.
   packs:
-    - pack: Keil::STM32N6xx_DFP
+    - pack: Keil::STM32N6xx_DFP@>=1.1.0
     - pack: ARM::CMSIS
     - pack: Keil::STM32N6570-DK_BSP
 
