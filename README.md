@@ -1,5 +1,6 @@
-[![Version](https://img.shields.io/github/v/release/Open-CMSIS-Pack/STM32N6xx_DFP)](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/releases/latest)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green?label)](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/blob/main/LICENSE)
+[![Version](https://img.shields.io/github/v/release/Open-CMSIS-Pack/STM32N6xx_DFP?label=Release)](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/releases/latest)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green?label=License)](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/blob/main/LICENSE)
+[![Build pack](https://img.shields.io/github/actions/workflow/status/Open-CMSIS-Pack/STM32N6xx_DFP/pack.yml?logo=arm&logoColor=0091bd&label=Build%20pack)](./.github/workflows/pack.yml)
 
 # STM32N6xx_DFP
 
@@ -44,7 +45,7 @@ https://github.com/Open-CMSIS-Pack/gen-pack)) generates the software pack. Run t
 
       STM32N6xx_DFP $ ./gen_pack.sh
 
-### GitHub Actions
+## GitHub Actions
 
 The repository uses GitHub Actions to generate the pack:
 
