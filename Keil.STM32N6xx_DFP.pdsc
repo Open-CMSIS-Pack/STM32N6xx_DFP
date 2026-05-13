@@ -184,7 +184,6 @@ High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP
         <compile define="STM32N645xx"/>
         <book name="https://www.st.com/resource/en/reference_manual/rm0486-stm32n647657xx-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32N647/657xx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32n657a0.pdf" title="STM32N6x5xx STM32N6x7xx Data Sheet"/>
-        <feature type="NPU" n="ST Neural-ART" m="600GOPS"/>
 
         <!-- BootROM copies the FSBL binary into the internal AXISRAM2 -->
         <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" default="1" init="0" startup="1" />
@@ -254,7 +253,6 @@ High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP
         <compile define="STM32N655xx"/>
         <book name="https://www.st.com/resource/en/reference_manual/rm0486-stm32n647657xx-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32N647/657xx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32n657a0.pdf" title="STM32N6x5xx STM32N6x7xx Data Sheet"/>
-        <feature type="NPU" n="ST Neural-ART" m="600GOPS"/>
 
         <!-- BootROM copies the FSBL binary into the internal AXISRAM2 -->
         <memory name="FSBL_CODE_NS"   access="rwx" start="0x24180400" size="0x0003FC00" default="1" init="0" startup="1" />
