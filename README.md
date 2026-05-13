@@ -58,4 +58,3 @@ to report misbehavior (i.e. bugs) or start discussions about enhancements. This
 is your best way to interact directly with the maintenance team and the community.
 We encourage you to append implementation suggestions as this helps to decrease the
 workload of the maintenance team.
-
