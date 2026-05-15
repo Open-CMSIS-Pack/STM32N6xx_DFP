@@ -185,10 +185,10 @@ Configure `target` in STM32CubeMX
         for-compiler: AC6
   ```
 
-- Add post build command to move ExtMemLoader.axf to root
+- Add post build command to copy ExtMemLoader.axf to root
 
   ```yaml
-    # Post-build command to move ExtMemLoader.axf to root
+    # Post-build command to copy ExtMemLoader.axf to root
     executes:
       - execute: Copy_ExtMemLoader_to_root
         run: ${CMAKE_COMMAND} -E copy $input$ $output$
