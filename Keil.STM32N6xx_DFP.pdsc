@@ -69,7 +69,7 @@ High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP
             value |= 0x00100000;                                // Enable debug clock: DBGMCU_CR[20] DBGCKEN
           </block>
 
-		  <!-- Enable Trace Clock and hence access to global trace components now -->
+          <!-- Enable Trace Clock and hence access to global trace components now -->
           <control if="__traceout">
             <block>
               value |= 0x00200000;                              // DBGMCU_CR[21] TRACECLKEN
