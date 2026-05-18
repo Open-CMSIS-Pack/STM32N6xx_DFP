@@ -16,7 +16,7 @@
     <release version="1.2.0-dev">
       Active development ...
       Added Debug Description for Trace
-	  Added dbgconf file for peripheral freeze register
+      Added dbgconf file for peripheral freeze register
     </release>
   </releases>
 
@@ -176,25 +176,21 @@ High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP
             __var value = 0;
 
             Sequence("ConfigureTraceTPIUPins");
+                                                                                           // Trace Clock is already enabled in "DebugDeviceUnlock"
 
-            //__ap   = 0;                                                                    // Switch to System Debug Access Port
-
-            // Enable Trace Clock
-            // not necessary because already done in "DebugDeviceUnlock".
-
+//            __ap   = 0;                                                                    // Switch to System Debug Access Port
             Write32(0xE0081004, 0x00000007);                                               // CSTF Priority Register (CSTF_PRIORITY): Increase ITM priority
-//          // Configure CoreSight Trace Funnel (CSTF) at 0xE0081000
+                                                                                           // Configure CoreSight Trace Funnel (CSTF) at 0xE0081000
             value      =  Read32(0xE0081000);                                              // Read Trace Funnel CONTROL Register
             value &amp;=  0x00000F00;                                                      // Preserve Hold Time Settings
             value     |=  0x00000003;                                                      // Enable ITM and ETM slave ports
             Write32(0xE0081000, value);                                                    // Update Trace Funnel CONTROL Register
 
-// disable ETF and wait until disabled
+                                                                                           // disable ETF and wait until disabled
             Write32(0xE0082028, 0x00000002);                                               // ETF Mode Register (ETF_MODE): Set to Hardware FIFO mode
             Write32(0xE0082034, 0x00000000);                                               // ETF Buffer Level Watermark Register (ETF_BUFWM): Set threshold vacancy to 0 (use full buffer)
             Write32(0xE0082304, 0x00000003);                                               // ETF Formatter and Flush Control Register (ETF_FFCR): Set ENFT and ENTI
             Write32(0xE0082020, 0x00000001);                                               // ETF ConTrol Register (ETF_CTL): Set TCEN
-
           </block>
         </sequence>
 
@@ -204,15 +200,10 @@ High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP
 
             __ap   = 0;                                                                    // Switch to System Debug Access Port
 
-            // Disable Trace Clock
+                                                                                           // Disable Trace Clock
             value      =  Read32(0x80001004);                                              // Read DBGMCU_CR
-            value &amp;= ~0x00100000;                                                      // DBGMCU_CR[20] : set TraceClkEn
+            value &amp;= ~0x00200000;                                                      // DBGMCU_CR[21] : clear TRACECLKEN
             Write32(0x80001004, value);                                                    // Update DBGMCU_CR
-
-//          // Configure CoreSight Trace Funnel (CSTF) at 0xE00F3000
-//          value      =  Read32(0xE00F3000);                                              // Read Trace Funnel CONTROL Register
-//          value &amp;=  0x00000FFC;                                                      // Preserve Hold Time Settings and other possibly set slave ports
-//          Write32(0xE00F3000, value);                                                    // Update Trace Funnel CONTROL Register
           </block>
         </sequence>
 
