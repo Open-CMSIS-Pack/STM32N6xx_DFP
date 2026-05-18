@@ -178,7 +178,6 @@ High-performance STM32N6 MCUs with Arm Cortex-M55 core, MVE, MPU, cache, DSP, DP
             Sequence("ConfigureTraceTPIUPins");
                                                                                            // Trace Clock is already enabled in "DebugDeviceUnlock"
 
-//            __ap   = 0;                                                                    // Switch to System Debug Access Port
             Write32(0xE0081004, 0x00000007);                                               // CSTF Priority Register (CSTF_PRIORITY): Increase ITM priority
                                                                                            // Configure CoreSight Trace Funnel (CSTF) at 0xE0081000
             value      =  Read32(0xE0081000);                                              // Read Trace Funnel CONTROL Register
