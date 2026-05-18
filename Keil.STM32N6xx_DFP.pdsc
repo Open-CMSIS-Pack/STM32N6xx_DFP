@@ -13,10 +13,8 @@
   </licenseSets>
 
   <releases>
-    <release version="1.2.0-dev">
+    <release version="1.2.1-dev">
       Active development ...
-      Added Debug Description for Trace
-      Added dbgconf file for peripheral freeze register
     </release>
   </releases>
 
