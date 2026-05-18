@@ -1,0 +1,150 @@
+// File: STM32N6xx.dbgconf
+// Version: 1.0.0
+// Note: refer to STM32N6xx reference manual (RM0486)
+//       refer to STM32N6x5xx STM32N6x7xx datasheet
+
+// <<< Use Configuration Wizard in Context Menu >>>
+
+// <h> DBGMCU configuration register (DBGMCU_CR)
+//   <o.31> HLT_TSGEN_EN          <i> TSGEN halt enable
+//   <o.28> DBTRGOEN              <i> DBTRGIO connection control (DBTRGIN/DBTRGOUT)
+//   <o.2>  DBG_STANDBY           <i> Allow debug in Standby mode
+//   <o.1>  DBG_STOP              <i> Allow debug in Stop mode
+//   <o.0>  DBG_SLEEP             <i> Allow debug in Sleep mode
+// </h>
+DbgMCU_CR = 0x80000007;
+
+// <h> DBGMCU AHB1 peripheral freeze register (DBGMCU_AHB1FZR)
+//   <o.15> DBG_GPDMA1_CH15_STOP  <i> GPDMA1 channel 15 stop in debug
+//   <o.14> DBG_GPDMA1_CH14_STOP  <i> GPDMA1 channel 14 stop in debug
+//   <o.13> DBG_GPDMA1_CH13_STOP  <i> GPDMA1 channel 13 stop in debug
+//   <o.12> DBG_GPDMA1_CH12_STOP  <i> GPDMA1 channel 12 stop in debug
+//   <o.11> DBG_GPDMA1_CH11_STOP  <i> GPDMA1 channel 11 stop in debug
+//   <o.10> DBG_GPDMA1_CH10_STOP  <i> GPDMA1 channel 10 stop in debug
+//   <o.9>  DBG_GPDMA1_CH9_STOP   <i> GPDMA1 channel 9 stop in debug
+//   <o.8>  DBG_GPDMA1_CH8_STOP   <i> GPDMA1 channel 8 stop in debug
+//   <o.7>  DBG_GPDMA1_CH7_STOP   <i> GPDMA1 channel 7 stop in debug
+//   <o.6>  DBG_GPDMA1_CH6_STOP   <i> GPDMA1 channel 6 stop in debug
+//   <o.5>  DBG_GPDMA1_CH5_STOP   <i> GPDMA1 channel 5 stop in debug
+//   <o.4>  DBG_GPDMA1_CH4_STOP   <i> GPDMA1 channel 4 stop in debug
+//   <o.3>  DBG_GPDMA1_CH3_STOP   <i> GPDMA1 channel 3 stop in debug
+//   <o.2>  DBG_GPDMA1_CH2_STOP   <i> GPDMA1 channel 2 stop in debug
+//   <o.1>  DBG_GPDMA1_CH1_STOP   <i> GPDMA1 channel 1 stop in debug
+//   <o.0>  DBG_GPDMA1_CH0_STOP   <i> GPDMA1 channel 0 stop in debug
+// </h>
+DbgMCU_AHB1_Fzr  = 0x00000000;
+
+// <h> DBGMCU AHB5 peripheral freeze register (DBGMCU_AHB5FZR)
+//   <o.16> DBG_NPU_STOP          <i> NPU stop in debug
+//   <o.15> DBG_HPDMA1_CH15_STOP  <i> HPDMA channel 15 stop in debug
+//   <o.14> DBG_HPDMA1_CH14_STOP  <i> HPDMA channel 14 stop in debug
+//   <o.13> DBG_HPDMA1_CH13_STOP  <i> HPDMA channel 13 stop in debug
+//   <o.12> DBG_HPDMA1_CH12_STOP  <i> HPDMA channel 12 stop in debug
+//   <o.11> DBG_HPDMA1_CH11_STOP  <i> HPDMA channel 11 stop in debug
+//   <o.10> DBG_HPDMA1_CH10_STOP  <i> HPDMA channel 10 stop in debug
+//   <o.9>  DBG_HPDMA1_CH9_STOP   <i> HPDMA channel 9 stop in debug
+//   <o.8>  DBG_HPDMA1_CH8_STOP   <i> HPDMA channel 8 stop in debug
+//   <o.7>  DBG_HPDMA1_CH7_STOP   <i> HPDMA channel 7 stop in debug
+//   <o.6>  DBG_HPDMA1_CH6_STOP   <i> HPDMA channel 6 stop in debug
+//   <o.5>  DBG_HPDMA1_CH5_STOP   <i> HPDMA channel 5 stop in debug
+//   <o.4>  DBG_HPDMA1_CH4_STOP   <i> HPDMA channel 4 stop in debug
+//   <o.3>  DBG_HPDMA1_CH3_STOP   <i> HPDMA channel 3 stop in debug
+//   <o.2>  DBG_HPDMA1_CH2_STOP   <i> HPDMA channel 2 stop in debug
+//   <o.1>  DBG_HPDMA1_CH1_STOP   <i> HPDMA channel 1 stop in debug
+//   <o.0>  DBG_HPDMA1_CH0_STOP   <i> HPDMA channel 0 stop in debug
+// </h>
+DbgMCU_AHB5_Fzr  = 0x00000000;
+
+// <h> DBGMCU APB1L peripheral freeze register (DBGMCU_APB1LFZR)
+//   <o.25> DBG_I3C2_STOP         <i> I3C2 SMBUS timeout stop in debug
+//   <o.24> DBG_I3C1_STOP         <i> I3C1 SMBUS timeout stop in debug
+//   <o.23> DBG_I2C3_STOP         <i> I2C3 SMBUS timeout stop in debug
+//   <o.22> DBG_I2C2_STOP         <i> I2C2 SMBUS timeout stop in debug
+//   <o.21> DBG_I2C1_STOP         <i> I2C1 SMBUS timeout stop in debug
+//   <o.13> DBG_TIM11_STOP        <i> TIM11 stop in debug
+//   <o.12> DBG_TIM10_STOP        <i> TIM10 stop in debug
+//   <o.11> DBG_WWDG1_STOP        <i> WWDG1 stop in debug
+//   <o.9>  DBG_LPTIM1_STOP       <i> LPTIM1 stop in debug
+//   <o.8>  DBG_TIM14_STOP        <i> TIM14 stop in debug
+//   <o.7>  DBG_TIM13_STOP        <i> TIM13 stop in debug
+//   <o.6>  DBG_TIM12_STOP        <i> TIM12 stop in debug
+//   <o.5>  DBG_TIM7_STOP         <i> TIM7 stop in debug
+//   <o.4>  DBG_TIM6_STOP         <i> TIM6 stop in debug
+//   <o.3>  DBG_TIM5_STOP         <i> TIM5 stop in debug
+//   <o.2>  DBG_TIM4_STOP         <i> TIM4 stop in debug
+//   <o.1>  DBG_TIM3_STOP         <i> TIM3 stop in debug
+//   <o.0>  DBG_TIM2_STOP         <i> TIM2 stop in debug
+// </h>
+DbgMCU_APB1L_Fzr  = 0x00000000;
+
+// <h> DBGMCU APB1H peripheral freeze register (DBGMCU_APB1HFZR)
+//   <o.8>  DBG_FDCAN_STOP        <i> FDCAN stop in debug
+// </h>
+DbgMCU_APB1H_Fzr  = 0x00000000;
+
+// <h> DBGMCU APB2 peripheral freeze register (DBGMCU_APB2FZ)
+//   <o.19> DBG_TIM9_STOP         <i> TIM9 stop in debug
+//   <o.18> DBG_TIM17_STOP        <i> TIM17 stop in debug
+//   <o.17> DBG_TIM16_STOP        <i> TIM16 stop in debug
+//   <o.16> DBG_TIM15_STOP        <i> TIM15 stop in debug
+//   <o.15> DBG_TIM18_STOP        <i> TIM18 stop in debug
+//   <o.1>  DBG_TIM8_STOP         <i> TIM8 stop in debug
+//   <o.0>  DBG_TIM1_STOP         <i> TIM1 stop in debug
+// </h>
+DbgMCU_APB2_Fzr  = 0x00000000;
+
+// <h> DBGMCU APB4 peripheral freeze register (DBGMCU_APB4FZR)
+//   <o.18> DBG_IWDG_STOP         <i> IWDG stop in debug
+//   <o.16> DBG_RTC_STOP          <i> RTC stop in debug
+//   <o.12> DBG_LPTIM5_STOP       <i> LPTIM5 stop in debug
+//   <o.11> DBG_LPTIM4_STOP       <i> LPTIM4 stop in debug
+//   <o.10> DBG_LPTIM3_STOP       <i> LPTIM2 stop in debug
+//   <o.9>  DBG_LPTIM2_STOP       <i> LPTIM2 stop in debug
+//   <o.8>  DBG_I2C4_STOP         <i> I2C4 stop in debug
+// </h>
+DbgMCU_APB4_Fzr  = 0x00000000;
+
+// <h> DBGMCU APB5 peripheral freeze register (DBGMCU_APB5FZR)
+//   <o.4>  DBG_GFXTIM_STOP       <i> GFXTIM stop in debug
+// </h>
+DbgMCU_APB5_Fzr  = 0x00000000;
+
+// <h> TPIU Pin Routing
+//   <o0> TRACECLK
+//     <i> ETM Trace Clock
+//       <0x00010003=> Pin PB3
+//       <0x0003000A=> Pin PD10
+//       <0x00040002=> Pin PE2
+//       <0x0004000A=> Pin PE10
+//       <0x00050008=> Pin PF8
+//       <0x00060007=> Pin PG7
+//       <0x00070003=> Pin PH3
+//       <0x00100000=> Pin PQ0
+//   <o1> TRACED0
+//     <i> ETM Trace Data 0
+//       <0x0001000D=> Pin PB13
+//       <0x00030002=> Pin PD2
+//       <0x00040003=> Pin PE3
+//       <0x00050009=> Pin PF9
+//   <o2> TRACED1
+//     <i> ETM Trace Data 1
+//       <0x00010000=> Pin PB0
+//       <0x00020008=> Pin PC8
+//       <0x00060003=> Pin PG3
+//       <0x0006000E=> Pin PG14
+//   <o3> TRACED2
+//     <i> ETM Trace Data 2
+//       <0x00010006=> Pin PB6
+//       <0x00070002=> Pin PH2
+//   <o4> TRACED3
+//     <i> ETM Trace Data 3
+//       <0x00010007=> Pin PB7
+//       <0x0002000C=> Pin PC12
+// </h>
+TraceClk_Pin = 0x00010003;
+TraceD0_Pin  = 0x00040003;
+TraceD1_Pin  = 0x00010000;
+TraceD2_Pin  = 0x00010006;
+TraceD3_Pin  = 0x00010007;
+
+// <<< end of configuration section >>>
