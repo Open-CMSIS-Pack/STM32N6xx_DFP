@@ -10,13 +10,12 @@ The **STMicroelectronics STM32N6 Series Device Family Pack (DFP)** is a [CMSIS-P
 ## Template Projects
 
 This DFP contains [Templates]( https://mdk-packs.github.io/vscode-cmsis-solution-docs/create_app.html#) stub projects that can be used with the [CMSIS-Toolbox](https://open-cmsis-pack.github.io/cmsis-toolbox/) or [Keil Studio]( https://www.keil.arm.com/).
- 
+
 Template   | Description
 :----------|:---------------------------------
 [FSBL](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/blob/main/Templates/FSBL/README.md)       | First Stage Bootloader template solution (CubeMX configurable)
 [FSBL_LRUN](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/blob/main/Templates/FSBL_LRUN/README.md)  | First Stage Bootloader load and run (LRUN) template solution (CubeMX configurable)
 [FSBL_XIP](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP/blob/main/Templates/FSBL_XIP/README.md)   | First Stage Bootloader execute in place (XIP) template solution (CubeMX configurable)
-
 
 ## CMSIS-Driver Support
 
