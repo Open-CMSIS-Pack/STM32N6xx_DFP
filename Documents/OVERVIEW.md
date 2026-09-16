@@ -22,6 +22,7 @@ Template   | Description
 This DFP is tested with the [CMSIS-Driver_STM32](https://www.keil.arm.com/packs/cmsis-driver_stm32-arm) pack that implements [CMSIS-Driver](https://arm-software.github.io/CMSIS_6/latest/Driver/index.html) interfaces using a shim layer to the STM32Cube HAL. The following drivers are supported.
 
 ```yml
+  - component: CMSIS-Driver:Ethernet MAC     # Ethernet MAC Driver for STM32 devices
   - component: CMSIS-Driver:GPIO             # GPIO Driver for STM32 devices
   - component: CMSIS-Driver:I2C              # I2C Driver for STM32 devices
   - component: CMSIS-Driver:MCI              # MCI Driver for STM32 devices

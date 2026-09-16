@@ -15,15 +15,15 @@ The bootROM copies FSBL image (512KB) from external Flash (Octo SPI Flash Memory
 > **Prerequisites**
 >
 >- **Required Packs**
->     - [Keil.STM32N6xx_DFP 1.2.0](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP) or higher
+>     - [Keil.STM32N6xx_DFP 1.2.1](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP) or higher
 >     - Board specific pack
 >       > STM32N6570-DK board: [Keil.STM32N6570-DK_BSP](https://github.com/Open-CMSIS-Pack/STM32N6570-DK_BSP)
 >- **Required CMSIS Tools and Extensions**
 >     - Arm CMSIS Solution 1.64.2
 >     - Arm CMSIS Debugger 1.3.0
 >- **Required ST tools and Firmware Package**
->     - [STM32CubeMX 6.16.1](https://www.st.com/en/development-tools/stm32cubemx.html)
->         - [STM32Cube_FW_N6 1.3.0](https://www.st.com/en/embedded-software/stm32cuben6.html)
+>     - [STM32CubeMX 6.18.0](https://www.st.com/en/development-tools/stm32cubemx.html)
+>         - [STM32Cube_FW_N6 1.4.0](https://www.st.com/en/embedded-software/stm32cuben6.html)
 >     - [STM32CubeProgrammer 2.21.0](https://www.st.com/en/development-tools/stm32cubeprog.html)
 >         - STM32_SigningTool_CLI: Verify the environment variable `STM32_PRG_PATH` points to the folder that contains `STM32_SigningTool_CLI.exe`
 
@@ -101,27 +101,6 @@ Configure `target` in STM32CubeMX
   ```
 
   > The OTP configuration for flash source selection is configurable via fuses in BOOTROM_CONFIG_2[8:5], OTP_WORD11 using **STM32CubeProgrammer**. Requires the **default** boot configuration to have sNOR device attached boot. For more information, please check [UM3234](https://www.st.com/resource/en/user_manual/um3234-how-to-proceed-with-boot-rom-on-stm32n6-mcus-stmicroelectronics.pdf).
-  
-### STM32CubeMX/`target`/FSBL.cgen.yml
-
-- Comment redundant files
-
-  ```yaml
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/stm32_extmem.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/sal/stm32_sal_xspi.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/sal/stm32_sal_sd.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_data.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/nor_sfdp/stm32_sfdp_driver.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/psram/stm32_psram_driver.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/sdcard/stm32_sdcard_driver.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Manager/user/stm32_user_driver.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Loader/core/memory_wrapper.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Loader/core/systick_management.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Loader/MDK-ARM/FlashDev.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Loader/MDK-ARM/FlashPrg.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Loader/STM32Cube/stm32_device_info.c
-    # - file: ./STM32CubeMX/Middlewares/ST/STM32_ExtMem_Loader/STM32Cube/stm32_loader_api.c
-  ```
 
 ### STM32CubeMX/`target`/STM32CubeMX/FSBL/Src/main.c
 
