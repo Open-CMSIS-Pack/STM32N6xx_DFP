@@ -13,12 +13,8 @@
   </licenseSets>
 
   <releases>
-    <release version="1.2.1-dev">
+    <release version="1.2.2-dev">
       Active development ...
-      Updated documentation
-      Updated Templates using STM32CubeMX version 6.18.0
-      Package Description:
-      - Corrected memory regions
     </release>
   </releases>
 
