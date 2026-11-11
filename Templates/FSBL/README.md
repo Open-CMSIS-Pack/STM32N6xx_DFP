@@ -67,10 +67,12 @@ Configure `target` in STM32CubeMX
               clock: 4000000
               protocol: swd
         memory:
-          - name: Ext-Flash
+          - name: Ext-Flash-FSBL
             access: rx
             start: 0x70000000
             size: 0x00100000
+            ram-start: 0x34180400
+            ram-size: 0x0003FC00
             algorithm: ExtMemLoader.axf
         device: <device_name>
         board: <device_name>
