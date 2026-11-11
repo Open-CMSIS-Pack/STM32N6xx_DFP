@@ -13,10 +13,8 @@
   </licenseSets>
 
   <releases>
-    <release version="1.2.2-dev">
+    <release version="1.2.3-dev">
       Active development ...
-      Package Description:
-       - Updated Secure AXISRAM2 regions as default for FSBL
     </release>
   </releases>
 
