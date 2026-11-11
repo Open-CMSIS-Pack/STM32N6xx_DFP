@@ -15,7 +15,7 @@ The bootROM copies FSBL image from external Flash (Octo SPI Flash Memory) into i
 > **Prerequisites**
 >
 >- **Required Packs**
->     - [Keil.STM32N6xx_DFP 1.2.1](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP) or higher
+>     - [Keil.STM32N6xx_DFP 1.2.2](https://github.com/Open-CMSIS-Pack/STM32N6xx_DFP) or higher
 >     - Board specific pack
 >       > STM32N6570-DK board: [Keil.STM32N6570-DK_BSP](https://github.com/Open-CMSIS-Pack/STM32N6570-DK_BSP)
 >- **Required CMSIS Tools and Extensions**
